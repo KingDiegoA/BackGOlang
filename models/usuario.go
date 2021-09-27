@@ -9,7 +9,7 @@ import (
 type Usuario struct {
 	ID           primitive.ObjectID `bson:"_id,omitempty" json:"id"`
 	Nombre       string             `bson:"nombre" json:"nombre,omitempty"`
-	Estado       bool               `bson:"estado" json:"estado,omitempty"`
+	Edad         int                `bson:"edad" json:"edad,omitempty"`
 	Correo       string             `bson:"correo" json:"correo"`
 	Nacionalidad string             `bson:"nacionalidad" json:"nacionalidad,omitempty"`
 	Fingreso     time.Time          `bson:"fingreso" json:"fingreso,omitempty"`
