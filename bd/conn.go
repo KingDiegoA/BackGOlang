@@ -9,7 +9,7 @@ import (
 )
 
 var MongoC = ConectarBD()
-var clientOptions = options.Client().ApplyURI("mongodb+srv://root:123@cluster0.ufxyn.mongodb.net/test")
+var clientOptions = options.Client().ApplyURI("mongodb+srv://root:1234@cluster0.ufxyn.mongodb.net/test")
 
 func ConectarBD() *mongo.Client {
 	client, err := mongo.Connect(context.TODO(), clientOptions)

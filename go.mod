@@ -7,5 +7,5 @@ require (
 	github.com/gorilla/mux v1.8.0
 	github.com/rs/cors v1.8.0
 	go.mongodb.org/mongo-driver v1.7.2
-	golang.org/x/crypto v0.0.0-20210921155107-089bfa567519 // indirect
+	golang.org/x/crypto v0.0.0-20210921155107-089bfa567519
 )
