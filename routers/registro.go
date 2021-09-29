@@ -42,5 +42,9 @@ func Registro(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Registro Fallido", 400)
 		return
 	}
+	if status == false {
+		http.Error(w, "Registro Exitoso", 201)
+		return
+	}
 	w.WriteHeader(http.StatusCreated)
 }

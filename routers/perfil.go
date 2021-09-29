@@ -7,7 +7,7 @@ import (
 	"github.com/KingDiegoA/BackGOlang/bd"
 )
 
-/*Profile permite extraer los valores del Perfil */
+/*Profile permite extraer los valores del Profile */
 func Profile(w http.ResponseWriter, r *http.Request) {
 
 	ID := r.URL.Query().Get("id")

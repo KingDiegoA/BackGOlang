@@ -9,7 +9,7 @@ import (
 	"go.mongodb.org/mongo-driver/bson/primitive"
 )
 
-/*FindProfile busca un perfil en la BD */
+/*FindProfile busca un profile en la BD */
 func FindProfile(ID string) (models.Usuario, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second*15)
 	defer cancel()
@@ -17,17 +17,17 @@ func FindProfile(ID string) (models.Usuario, error) {
 	db := MongoC.Database("mongodb")
 	col := db.Collection("usuarios")
 
-	var perfil models.Usuario
+	var profile models.Usuario
 	objID, _ := primitive.ObjectIDFromHex(ID)
 
 	condicion := bson.M{
 		"_id": objID,
 	}
 
-	err := col.FindOne(ctx, condicion).Decode(&perfil)
-	perfil.Password = ""
+	err := col.FindOne(ctx, condicion).Decode(&profile)
+	profile.Password = ""
 	if err != nil {
-		return perfil, err
+		return profile, err
 	}
-	return perfil, nil
+	return profile, nil
 }
