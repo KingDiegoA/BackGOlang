@@ -20,6 +20,7 @@ func Ejecutar() {
 	router.HandleFunc("/modificarPerfil", middleware.CheckConn(middleware.ValidarJWT(routers.UpdateProfile))).Methods("PUT")
 	//Rutas de Solicitudes(Request)
 	router.HandleFunc("/solicitudes", middleware.CheckConn(middleware.ValidarJWT(routers.SaveRequest))).Methods("POST")
+	router.HandleFunc("/verSolicitudes", middleware.CheckConn(middleware.ValidarJWT(routers.ViewRequest))).Methods("GET")
 	PORT := os.Getenv("PORT")
 	if PORT == "" {
 		PORT = "8080"
