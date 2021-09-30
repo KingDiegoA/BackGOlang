@@ -65,3 +65,21 @@ func ViewRequest(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusCreated)
 	json.NewEncoder(w).Encode(respuesta)
 }
+
+/*DeleteRequest permite borrar un Request determinado */
+func DeleteRequest(w http.ResponseWriter, r *http.Request) {
+	ID := r.URL.Query().Get("id")
+	if len(ID) < 1 {
+		http.Error(w, "Debe enviar el parámetro ID", http.StatusBadRequest)
+		return
+	}
+
+	err := bd.DeleteRequest(ID, IDUsuario)
+	if err != nil {
+		http.Error(w, "Ocurrió un error al intentar eliminar "+err.Error(), http.StatusBadRequest)
+		return
+	}
+
+	w.Header().Set("Content-type", "application/json")
+	w.WriteHeader(http.StatusCreated)
+}

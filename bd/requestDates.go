@@ -36,8 +36,8 @@ func InsertRequest(t models.SaveRequest) (string, bool, error) {
 func ResponseRequest(ID string, pagina int64) ([]*models.Response, bool) {
 	ctx, cancel := context.WithTimeout(context.Background(), 15*time.Second)
 	defer cancel()
-	db := MongoC.Database("twittor")
-	col := db.Collection("tweet")
+	db := MongoC.Database("mongodb")
+	col := db.Collection("solicitudes")
 
 	var resultados []*models.Response
 
@@ -65,4 +65,23 @@ func ResponseRequest(ID string, pagina int64) ([]*models.Response, bool) {
 		resultados = append(resultados, &registro)
 	}
 	return resultados, true
+}
+
+/*DeleteRequest borra una solicitud determinado */
+func DeleteRequest(ID string, UserID string) error {
+	ctx, cancel := context.WithTimeout(context.Background(), time.Second*15)
+	defer cancel()
+
+	db := MongoC.Database("mongodb")
+	col := db.Collection("solicitudes")
+
+	objID, _ := primitive.ObjectIDFromHex(ID)
+
+	condicion := bson.M{
+		"_id":    objID,
+		"userid": UserID,
+	}
+
+	_, err := col.DeleteOne(ctx, condicion)
+	return err
 }

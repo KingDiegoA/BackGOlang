@@ -19,8 +19,11 @@ func Ejecutar() {
 	router.HandleFunc("/perfil", middleware.CheckConn(middleware.ValidarJWT(routers.Profile))).Methods("GET")
 	router.HandleFunc("/modificarPerfil", middleware.CheckConn(middleware.ValidarJWT(routers.UpdateProfile))).Methods("PUT")
 	//Rutas de Solicitudes(Request)
+
 	router.HandleFunc("/solicitudes", middleware.CheckConn(middleware.ValidarJWT(routers.SaveRequest))).Methods("POST")
 	router.HandleFunc("/verSolicitudes", middleware.CheckConn(middleware.ValidarJWT(routers.ViewRequest))).Methods("GET")
+	router.HandleFunc("/eliminarSolicitudes", middleware.CheckConn(middleware.ValidarJWT(routers.DeleteRequest))).Methods("DELETE")
+
 	PORT := os.Getenv("PORT")
 	if PORT == "" {
 		PORT = "8080"
