@@ -19,3 +19,8 @@ type Usuario struct {
 	Avatar       string             `bson:"avatar" json:"avatar,omitempty"`
 	Banner       string             `bson:"banner" json:"banner,omitempty"`
 }
+
+/*RespuestaLogin tiene el token que se devuelve con el login */
+type RespuestaLogin struct {
+	Token string `json:"token,omitempty"`
+}
